@@ -1,0 +1,174 @@
+{
+  "episodes": {
+    "ep26": {
+      "title": "Redbelly Insights - Episode 26",
+      "date": "26 March 2026",
+      "guests": "Alan Burt & Matt Mills",
+      "url": "https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&token=ce10a8dd-1721-4272-bd43-f3e6be081d94"
+    },
+    "ep28": {
+      "title": "Redbelly Insights - Episode 28",
+      "date": "11 June 2026",
+      "guests": "Vincent Gramoli",
+      "url": "https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4"
+    }
+  },
+  "clips": [
+    {
+      "id": "01_mev_attacks_get_caught",
+      "episode": "ep28",
+      "tag": "Redbelly tech",
+      "topic": "Redbelly technology: MEV accountability",
+      "speaker": "Vincent Gramoli",
+      "role": "Founder & Chief Science Officer, Redbelly Network",
+      "hook": "Sandwich attacks on Redbelly\nget detected. Then punished.",
+      "point": "Redbelly detects maximum extractable value (MEV) attacks such as sandwich and front-running attacks, and can automatically penalise repeat offenders by slashing stake or removing them for a while.",
+      "caption": "Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake.",
+      "target": "largest",
+      "shot_overrides": [
+        {
+          "from": 1004.0,
+          "target": "left",
+          "why": "wide two-shot: the speaker is the person on the left"
+        }
+      ],
+      "pieces": [
+        {
+          "start": 965.4,
+          "end": 1018.0,
+          "text": "Late last year, we came up with MEV accountability, which means that if you try to do a maximum extractable value attack, which means you would probably try to do sandwich attacks, front-running attacks, back-running attacks. If you start doing that, then the system will pick it up and will detect that there is an attempt to do a sandwich attack. And by having the system picking it up, we can also automate a penalty mechanism that says, okay, if you do that too often, it looks like it's not random. So you're probably trying to make a profit on the back of others. And therefore, you know, you can be punished. So maybe the part of the stake that you have in the system will be slashed, or you're going to be kicked out for a while from the system. So we already have this detection in place since last year."
+        }
+      ],
+      "omitted": []
+    },
+    {
+      "id": "02_no_forks_no_double_spend",
+      "episode": "ep28",
+      "tag": "Redbelly tech",
+      "topic": "Redbelly technology: certainty for high-value assets",
+      "speaker": "Vincent Gramoli",
+      "role": "Founder & Chief Science Officer, Redbelly Network",
+      "hook": "No forks. No double spending.\nWhy that matters for big assets.",
+      "point": "Redbelly is seen as an alternative layer one for high-value asset applications because it gives certainty: no forks and no double-spending risk.",
+      "caption": "If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.",
+      "target": "largest",
+      "shot_overrides": [
+        {
+          "from": 53.0,
+          "to": 59.0,
+          "target": "left",
+          "why": "wide two-shot: keep the guest (left) in frame"
+        },
+        {
+          "from": 66.0,
+          "to": 72.0,
+          "target": "left",
+          "why": "wide two-shot while the host speaks: keep the guest (left) in frame"
+        }
+      ],
+      "pieces": [
+        {
+          "start": 53.35,
+          "end": 89.6,
+          "text": "That was a good surprise to also see that people are aware of Redbelly Network, and they see it as an alternative to other layer one blockchains for specific applications. And that was also the topic of my talk over there. [[Oh, fantastic. So alternative to Ethereum, alternative to Solana and others.]] Yeah, exactly. If you want some kind of certainty, like, for example, if you don't like forks and you don't want any risk of double spending, then you might want to implement very high value asset applications, and then Redbelly comes as a nice choice because it offers this kind of strengthened security."
+        }
+      ],
+      "omitted": [
+        "The host's line (shown in italics, marked HOST in the .srt) is kept because it names the chains Vincent is comparing against."
+      ]
+    },
+    {
+      "id": "03_what_pdti_means",
+      "episode": "ep28",
+      "tag": "Redbelly tech",
+      "topic": "Redbelly technology: public digital token infrastructure",
+      "speaker": "Vincent Gramoli",
+      "role": "Founder & Chief Science Officer, Redbelly Network",
+      "hook": "“Public digital token\ninfrastructure”, in 45 seconds",
+      "point": "As public digital token infrastructure (PDTI), Redbelly is permissionless, open-source, compliant with the law and secure enough to protect users, and is a platform that connects people without needing an AFSL.",
+      "caption": "Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI).",
+      "target": "largest",
+      "pieces": [
+        {
+          "start": 469.05,
+          "end": 517.5,
+          "text": "So Redbelly, as a public digital token infrastructure, is permissionless, open-source software that has finally lowered the barrier of entry for anyone to get access to equal economic opportunities. Right. So that's really the end goal. And I think this PDTI means that, oh, Redbelly Network is compliant with the law, and it's secure enough to protect the citizen or users. And also it has successfully reached this goal of being a platform of exchanges without needing an Australian financial service licence, because it's just the platform that connects people, right? And I think that's what we're aiming towards."
+        }
+      ],
+      "omitted": []
+    },
+    {
+      "id": "04_acacia_investors_trade_directly",
+      "episode": "ep26",
+      "tag": "Project Acacia",
+      "topic": "Project Acacia + Tokeniser: holder-to-holder transfers",
+      "speaker": "Matt Mills",
+      "role": "Chief Customer Officer, Tokeniser",
+      "full_height": true,
+      "hook": "Sell your fund units\nwithout waiting for the fund",
+      "point": "In Project Acacia, unit holders could agree a price and swap units directly with each other (the fund only approves the transfer), and anyone can verify it on the Redbelly blockchain instead of trusting Tokeniser.",
+      "caption": "In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain.",
+      "target": "left",
+      "pieces": [
+        {
+          "start": 1282.25,
+          "end": 1327.05,
+          "text": "With the swap, what was so cool about that is that meant that unit holders finally had a means of essentially being able to say, and demonstrably commit to, I want to sell my units, and like a traditional OTC market, agree to a price with another unit holder. And then without the fund having to do anything but approve that transfer occurring, those units would swap. And the beautiful thing about all of this is you could see it happen on the blockchain. So you don't have to rely on Tokeniser, you don't have to trust us, you can see it happen on the Redbelly blockchain and know that that transaction is going to occur. And that combined with the interface and the experience, made it, and what we demonstrated with Acacia was that it was easier, it was faster, it was cheaper, because you cut out all those intermediaries and all those intervening steps."
+        }
+      ],
+      "omitted": []
+    },
+    {
+      "id": "05_holdings_in_any_app",
+      "episode": "ep26",
+      "tag": "Tokeniser",
+      "topic": "Tokeniser: on-chain data any app can read",
+      "speaker": "Matt Mills",
+      "role": "Chief Customer Officer, Tokeniser",
+      "full_height": true,
+      "hook": "Issued with Tokeniser.\nVisible in someone else's app.",
+      "point": "Because tokenised fund units live on chain, Open Markets shows investors their holdings by reading the block explorer, with no integration with Tokeniser, so issuers aren't locked into one platform.",
+      "caption": "Fund units tokenised with Tokeniser show up in investors' Open Markets accounts, read straight from the block explorer with no integration needed.",
+      "target": "left",
+      "pieces": [
+        {
+          "start": 2058.35,
+          "end": 2103.9,
+          "text": "One of the cool things, another example out of Acacia that demonstrates this, is that we're working with some fantastic, the fantastic team at Open Markets. They have a fantastic portfolio tool that their investors can look into, see their holdings. And essentially what we've done via this tokenised managed investment scheme, where people are buying units in a fund, is those same investors can see those holdings on their Open Markets accounts because of an integration, not with Tokeniser directly, but by pulling that data from the block explorer. And so that's a really cool, very simple, but very illustrative example of the benefit that being tokenised and being on chain brings, where we can say, hey, you can use us to tokenise, but you don't have to use us for your portfolio management."
+        }
+      ],
+      "omitted": [
+        "34:41.8 to 34:46.4: the episode cuts away to the host while Matt is speaking, so Matt's last frame before the cutaway is held with a slow push-in. The audio is unchanged."
+      ],
+      "shot_overrides": [
+        {
+          "from": 2081.5,
+          "to": 2086.0,
+          "freeze_at": 2081.6,
+          "why": "the episode cuts to the host for 4.6 s while Matt keeps talking; hold Matt's last frame before the cutaway with a slow push-in (audio unchanged)"
+        }
+      ]
+    },
+    {
+      "id": "06_acacia_regulatory_umbrella",
+      "episode": "ep26",
+      "tag": "Project Acacia",
+      "topic": "Project Acacia: the RBA's regulatory umbrella",
+      "speaker": "Alan Burt",
+      "role": "Executive Chairman, Redbelly Network",
+      "full_height": true,
+      "hook": "What Project Acacia changed\nfor tokenisation in Australia",
+      "point": "By leaning in through Project Acacia, the RBA gave boards, risk committees and regulators the comfort to pursue tokenisation, a regulatory umbrella to demonstrate benefits estimated at around $20 billion a year.",
+      "caption": "Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA's Project Acacia gave them a regulatory umbrella.",
+      "target": "right",
+      "pieces": [
+        {
+          "start": 969.25,
+          "end": 1005.95,
+          "text": "And I think we've also talked about Project Acacia previously, where the RBA, thank goodness, has leant in and gives people a lot of relief to make it feel comfortable that they can pursue their tokenisation agenda, but make boards comfortable, make risk committees comfortable, make regulators comfortable. And so that's been a real big catalyst for us to do the things that people have wanted to do, but have been too gun-shy to do. And so they've given us a regulatory umbrella that's allowed us to do that, and demonstrate and showcase the benefits to the economy. The number is something like $20 billion in saving annually. So we need to do this. And moreover, we have an opportunity to export that amazing regulatory framework into the world."
+        }
+      ],
+      "omitted": []
+    }
+  ]
+}
