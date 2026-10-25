@@ -1,0 +1,257 @@
+{
+  "01_mev_attacks_get_caught": {
+    "duration": 52.6,
+    "shots": [
+      {
+        "start": 965.4,
+        "end": 1004.3,
+        "crop": [
+          606,
+          1080,
+          397,
+          0
+        ],
+        "target": "largest",
+        "face_samples": 195,
+        "face_in_crop": 195
+      },
+      {
+        "start": 1004.3,
+        "end": 1018.0,
+        "crop": [
+          524,
+          934,
+          167,
+          146
+        ],
+        "target": "left",
+        "face_samples": 69,
+        "face_in_crop": 69
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          965.4,
+          1018.0
+        ],
+        "matched_tokens": 147,
+        "tokens": 152
+      }
+    ],
+    "subtitle_cues": 46
+  },
+  "02_no_forks_no_double_spend": {
+    "duration": 36.25,
+    "shots": [
+      {
+        "start": 53.35,
+        "end": 59.3,
+        "crop": [
+          540,
+          960,
+          128,
+          101
+        ],
+        "target": "left",
+        "face_samples": 30,
+        "face_in_crop": 30
+      },
+      {
+        "start": 59.3,
+        "end": 66.667,
+        "crop": [
+          606,
+          1080,
+          442,
+          0
+        ],
+        "target": "largest",
+        "face_samples": 38,
+        "face_in_crop": 38
+      },
+      {
+        "start": 66.667,
+        "end": 72.3,
+        "crop": [
+          516,
+          920,
+          141,
+          109
+        ],
+        "target": "left",
+        "face_samples": 29,
+        "face_in_crop": 29
+      },
+      {
+        "start": 72.3,
+        "end": 89.6,
+        "crop": [
+          606,
+          1080,
+          437,
+          0
+        ],
+        "target": "largest",
+        "face_samples": 88,
+        "face_in_crop": 88
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          53.35,
+          89.6
+        ],
+        "matched_tokens": 104,
+        "tokens": 105
+      }
+    ],
+    "subtitle_cues": 37
+  },
+  "03_what_pdti_means": {
+    "duration": 48.45,
+    "shots": [
+      {
+        "start": 469.05,
+        "end": 517.5,
+        "crop": [
+          606,
+          1080,
+          435,
+          0
+        ],
+        "target": "largest",
+        "face_samples": 243,
+        "face_in_crop": 243
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          469.05,
+          517.5
+        ],
+        "matched_tokens": 95,
+        "tokens": 99
+      }
+    ],
+    "subtitle_cues": 38
+  },
+  "04_acacia_investors_trade_directly": {
+    "duration": 44.8,
+    "shots": [
+      {
+        "start": 1282.25,
+        "end": 1327.05,
+        "crop": [
+          404,
+          720,
+          133,
+          0
+        ],
+        "target": "left",
+        "face_samples": 215,
+        "face_in_crop": 215
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          1282.25,
+          1327.05
+        ],
+        "matched_tokens": 155,
+        "tokens": 156
+      }
+    ],
+    "subtitle_cues": 51
+  },
+  "05_holdings_in_any_app": {
+    "duration": 45.55,
+    "shots": [
+      {
+        "start": 2058.35,
+        "end": 2081.788,
+        "crop": [
+          404,
+          720,
+          144,
+          0
+        ],
+        "target": "left",
+        "freeze_at": null,
+        "face_samples": 113,
+        "face_in_crop": 113
+      },
+      {
+        "start": 2081.788,
+        "end": 2086.418,
+        "crop": [
+          404,
+          720,
+          158,
+          0
+        ],
+        "target": "left",
+        "freeze_at": 2081.6,
+        "face_samples": 5,
+        "face_in_crop": 5
+      },
+      {
+        "start": 2086.418,
+        "end": 2103.9,
+        "crop": [
+          404,
+          720,
+          155,
+          0
+        ],
+        "target": "left",
+        "freeze_at": null,
+        "face_samples": 85,
+        "face_in_crop": 85
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          2058.35,
+          2103.9
+        ],
+        "matched_tokens": 135,
+        "tokens": 135
+      }
+    ],
+    "subtitle_cues": 47
+  },
+  "06_acacia_regulatory_umbrella": {
+    "duration": 36.7,
+    "shots": [
+      {
+        "start": 969.25,
+        "end": 1005.95,
+        "crop": [
+          404,
+          720,
+          692,
+          0
+        ],
+        "target": "right",
+        "face_samples": 176,
+        "face_in_crop": 176
+      }
+    ],
+    "alignment": [
+      {
+        "piece": [
+          969.25,
+          1005.95
+        ],
+        "matched_tokens": 120,
+        "tokens": 129
+      }
+    ],
+    "subtitle_cues": 42
+  }
+}
