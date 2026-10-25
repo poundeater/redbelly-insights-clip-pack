@@ -1,178 +1,355 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Redbelly Insights Clip Pack</title>
 <meta name="description" content="Six captioned vertical clips from Redbelly Insights on Redbelly technology, Project Acacia and Tokeniser.">
-<style>
-  :root { --bg:#f6f4f1; --card:#ffffff; --ink:#16161a; --muted:#5d5d66; --line:#e4e0da; --amber:#d9661f; --chip:#fff1e6; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#0f0f12; --card:#18181d; --ink:#f2f2f4; --muted:#a3a3ad; --line:#2a2a31; --amber:#ff8a3d; --chip:#2b1d14; }
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
-  header, main, footer { max-width:1120px; margin:0 auto; padding:0 16px; }
-  header { padding-top:48px; padding-bottom:24px; }
-  .kicker { color:var(--amber); font-weight:700; letter-spacing:.12em; font-size:13px; text-transform:uppercase; }
-  h1 { font-size:clamp(28px,5vw,44px); line-height:1.1; margin:8px 0 12px; }
-  header p { color:var(--muted); max-width:720px; margin:0; }
-  .facts { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding:0; list-style:none; }
-  .facts li { background:var(--card); border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-size:14px; }
-  .clip { display:grid; grid-template-columns:minmax(0,300px) 1fr; gap:28px; background:var(--card); border:1px solid var(--line);
-          border-radius:20px; padding:20px; margin:20px 0; }
-  .phone { aspect-ratio:9/16; border-radius:16px; overflow:hidden; background:#000; }
-  .phone video { width:100%; height:100%; display:block; object-fit:cover; background:#000; }
-  .row { display:flex; align-items:center; gap:10px; font-size:13px; }
-  .num { font-weight:800; color:var(--amber); }
-  .tag { background:var(--chip); color:var(--amber); font-weight:700; text-transform:uppercase; letter-spacing:.08em; padding:3px 8px; border-radius:6px; }
-  .len { color:var(--muted); margin-left:auto; }
-  h2 { font-size:24px; line-height:1.25; margin:12px 0 8px; }
-  .who { margin:0 0 12px; color:var(--muted); } .who strong { color:var(--ink); }
-  .point { margin:0 0 16px; }
-  dl { display:grid; grid-template-columns:auto 1fr; gap:4px 16px; margin:0 0 16px; font-size:14px; }
-  dt { color:var(--muted); } dd { margin:0; overflow-wrap:anywhere; }
-  a { color:var(--amber); }
-  .caption { border-left:3px solid var(--amber); padding:4px 0 4px 14px; margin-bottom:16px; }
-  .caption .label { font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
-  .caption p { margin:4px 0 10px; }
-  button { font:inherit; font-size:14px; padding:6px 12px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--ink); cursor:pointer; }
-  .dl { display:flex; flex-wrap:wrap; gap:16px; margin:0; font-size:14px; font-weight:600; }
-  footer { color:var(--muted); font-size:14px; padding-top:12px; padding-bottom:48px; }
-  @media (max-width:720px) { .clip { grid-template-columns:1fr; } .phone { max-width:320px; width:100%; margin:0 auto; } }
-</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Redbelly Insights Clip Pack">
+<meta property="og:description" content="Six captioned vertical clips from Redbelly Insights on Redbelly technology, Project Acacia and Tokeniser.">
+<meta property="og:image" content="og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0c1317">
+<link rel="icon" href="assets/brand/icon.png">
+<link rel="preload" href="assets/fonts/BeVietnamPro-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 </head>
 <body>
-<header>
-  <div class="kicker">Redbelly Insights &middot; Clip pack</div>
-  <h1>Six moments on Redbelly technology, Project Acacia and Tokeniser</h1>
-  <p>Captioned vertical clips cut from the latest official Redbelly Insights episodes, ready for X, YouTube Shorts and Instagram. Each clip is one continuous passage from the episode.</p>
-  <ul class="facts"><li>9:16 &middot; 1080&times;1920</li><li>30 fps &middot; H.264 + AAC</li><li>Burned-in captions + SRT</li><li>&minus;14 LUFS</li></ul>
+<a class="sr-only" href="#clips">Skip to clips</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand-link" href="#top" aria-label="Redbelly DAO, clip pack home">
+      <img class="logo-dark" src="assets/brand/dao-logo-on-dark.png" alt="Redbelly DAO" width="62" height="44">
+      <img class="logo-light" src="assets/brand/dao-logo-on-light.png" alt="Redbelly DAO" width="62" height="44">
+      <span>Insights clip pack</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#clips">Clips</a><a href="#sources">Sources</a><a href="#checks">Checks</a><a href="#method">Method</a>
+    </nav>
+    <button type="button" class="btn btn-ghost btn-sm theme-toggle" aria-pressed="false"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 2.5v11a5.5 5.5 0 0 0 0-11Z" fill="currentColor"/></svg><span>Light theme</span></button>
+  </div>
 </header>
-<main>
-    <article class="clip">
-      <div class="phone"><video src="clips/01_mev_attacks_get_caught.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">01</span><span class="tag">Redbelly tech</span><span class="len">53s</span></div>
-        <h2>Sandwich attacks on Redbelly get detected. Then punished.</h2>
-        <p class="who"><strong>Vincent Gramoli</strong><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
-        <p class="point">Redbelly detects maximum extractable value (MEV) attacks such as sandwich and front-running attacks, and can automatically penalise repeat offenders by slashing stake or removing them for a while.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4" target="_blank" rel="noopener">Redbelly Insights - Episode 28</a> &middot; 11 June 2026</dd>
-          <dt>Timestamp</dt><dd>16:05 &ndash; 16:58</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake.</p>
-          <button type="button" data-copy="Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake.">Copy caption</button>
+
+<main id="top">
+  <div class="band">
+    <div class="wrap hero">
+      <div>
+        <div class="caps">Redbelly Insights &middot; Podcast clip pack</div>
+        <h1>Six clips from Redbelly Insights. <em>One clear point each.</em></h1>
+        <p class="lede">Cut from the latest official episodes for people who will not sit through a full interview.
+          Every clip is one continuous passage about Redbelly technology, Project Acacia or Tokeniser, with burned-in
+          captions, the speaker's name and role, and a post caption ready for X, YouTube Shorts and Instagram.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#clips"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3.5v9l7-4.5-7-4.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Watch the clips</a>
+          <a class="btn btn-ghost" href="#sources">Sources and captions</a>
         </div>
-        <p class="dl"><a href="clips/01_mev_attacks_get_caught.mp4" download>Download MP4</a><a href="subtitles/01_mev_attacks_get_caught.srt" download>Download SRT</a></p>
-      </div>
-    </article>
-    <article class="clip">
-      <div class="phone"><video src="clips/02_no_forks_no_double_spend.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">02</span><span class="tag">Redbelly tech</span><span class="len">36s</span></div>
-        <h2>No forks. No double spending. Why that matters for big assets.</h2>
-        <p class="who"><strong>Vincent Gramoli</strong><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
-        <p class="point">Redbelly is seen as an alternative layer one for high-value asset applications because it gives certainty: no forks and no double-spending risk.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4" target="_blank" rel="noopener">Redbelly Insights - Episode 28</a> &middot; 11 June 2026</dd>
-          <dt>Timestamp</dt><dd>0:53 &ndash; 1:29</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.</p>
-          <button type="button" data-copy="If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.">Copy caption</button>
+        <div class="stats">
+          <div class="stat"><b>6</b><span>vertical clips</span></div>
+          <div class="stat"><b>4:24</b><span>total runtime</span></div>
+          <div class="stat"><b>1080x1920</b><span>9:16, 30 fps, MP4</span></div>
+          <div class="stat"><b>60/60</b><span>automated checks passed</span></div>
         </div>
-        <p class="dl"><a href="clips/02_no_forks_no_double_spend.mp4" download>Download MP4</a><a href="subtitles/02_no_forks_no_double_spend.srt" download>Download SRT</a></p>
       </div>
-    </article>
-    <article class="clip">
-      <div class="phone"><video src="clips/03_what_pdti_means.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">03</span><span class="tag">Redbelly tech</span><span class="len">48s</span></div>
-        <h2>“Public digital token infrastructure”, in 45 seconds</h2>
-        <p class="who"><strong>Vincent Gramoli</strong><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
-        <p class="point">As public digital token infrastructure (PDTI), Redbelly is permissionless, open-source, compliant with the law and secure enough to protect users, and is a platform that connects people without needing an AFSL.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4" target="_blank" rel="noopener">Redbelly Insights - Episode 28</a> &middot; 11 June 2026</dd>
-          <dt>Timestamp</dt><dd>7:49 &ndash; 8:37</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI).</p>
-          <button type="button" data-copy="Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI).">Copy caption</button>
+      <div class="stack" aria-hidden="true"><img src="assets/posters/01_mev_attacks_get_caught.webp" alt="" width="540" height="960"><img src="assets/posters/04_acacia_investors_trade_directly.webp" alt="" width="540" height="960"><img src="assets/posters/05_holdings_in_any_app.webp" alt="" width="540" height="960"></div>
+    </div>
+  </div>
+
+  <section id="clips">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="caps">The clips</div>
+          <h2>Watch, copy the caption, download</h2>
+          <p>Each card has the clip, the one point it makes, the exact source range, a post caption with its X character
+            count, and the MP4 and SRT files. Captions are burned in; the SRT is there for platforms that take uploads.</p>
         </div>
-        <p class="dl"><a href="clips/03_what_pdti_means.mp4" download>Download MP4</a><a href="subtitles/03_what_pdti_means.srt" download>Download SRT</a></p>
+        <div class="filters" role="group" aria-label="Filter by topic"><button type="button" data-filter="all" aria-pressed="true">All 6</button><button type="button" data-filter="redbelly-tech" aria-pressed="false">Redbelly tech <span class="mono">3</span></button><button type="button" data-filter="project-acacia" aria-pressed="false">Project Acacia <span class="mono">2</span></button><button type="button" data-filter="tokeniser" aria-pressed="false">Tokeniser <span class="mono">1</span></button></div>
       </div>
-    </article>
-    <article class="clip">
-      <div class="phone"><video src="clips/04_acacia_investors_trade_directly.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">04</span><span class="tag">Project Acacia</span><span class="len">45s</span></div>
-        <h2>Sell your fund units without waiting for the fund</h2>
-        <p class="who"><strong>Matt Mills</strong><br>Chief Customer Officer, Tokeniser</p>
-        <p class="point">In Project Acacia, unit holders could agree a price and swap units directly with each other (the fund only approves the transfer), and anyone can verify it on the Redbelly blockchain instead of trusting Tokeniser.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94" target="_blank" rel="noopener">Redbelly Insights - Episode 26</a> &middot; 26 March 2026</dd>
-          <dt>Timestamp</dt><dd>21:22 &ndash; 22:07</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain.</p>
-          <button type="button" data-copy="In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain.">Copy caption</button>
+      <div class="grid">
+      <article class="card" data-tag="redbelly-tech" id="clip-01">
+        <div class="player">
+          <video src="clips/01_mev_attacks_get_caught.mp4" poster="assets/posters/01_mev_attacks_get_caught.webp" controls playsinline preload="none"
+                 aria-label="Clip 01: Sandwich attacks on Redbelly get detected. Then punished."></video>
         </div>
-        <p class="dl"><a href="clips/04_acacia_investors_trade_directly.mp4" download>Download MP4</a><a href="subtitles/04_acacia_investors_trade_directly.srt" download>Download SRT</a></p>
-      </div>
-    </article>
-    <article class="clip">
-      <div class="phone"><video src="clips/05_holdings_in_any_app.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">05</span><span class="tag">Tokeniser</span><span class="len">46s</span></div>
-        <h2>Issued with Tokeniser. Visible in someone else&#x27;s app.</h2>
-        <p class="who"><strong>Matt Mills</strong><br>Chief Customer Officer, Tokeniser</p>
-        <p class="point">Because tokenised fund units live on chain, Open Markets shows investors their holdings by reading the block explorer, with no integration with Tokeniser, so issuers aren&#x27;t locked into one platform.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94" target="_blank" rel="noopener">Redbelly Insights - Episode 26</a> &middot; 26 March 2026</dd>
-          <dt>Timestamp</dt><dd>34:18 &ndash; 35:03</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>Fund units tokenised with Tokeniser show up in investors&#x27; Open Markets accounts, read straight from the block explorer with no integration needed.</p>
-          <button type="button" data-copy="Fund units tokenised with Tokeniser show up in investors&#x27; Open Markets accounts, read straight from the block explorer with no integration needed.">Copy caption</button>
+        <div class="card-head"><span class="num">01</span><span class="caps">Redbelly tech</span><span class="len">0:53</span></div>
+        <div class="card-body">
+          <h3>Sandwich attacks on Redbelly get detected. Then punished.</h3>
+          <p class="speaker"><b>Vincent Gramoli</b><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
+          <p class="point">Redbelly detects maximum extractable value (MEV) attacks such as sandwich and front-running attacks, and can automatically penalise repeat offenders by slashing stake or removing them for a while.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 28</span>
+            <span class="mono">EP28 16:05 to 16:58</span>
+            <a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=965.4,1018.0" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">139/280</span></div>
+            <p>Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake.</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=Front-running%20and%20sandwich%20attacks%20drain%20ordinary%20users%20on%20most%20chains.%20On%20Redbelly%20they%20are%20detected%2C%20and%20repeat%20offenders%20can%20lose%20stake." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/01_mev_attacks_get_caught.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">27 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/01_mev_attacks_get_caught.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
         </div>
-        <p class="dl"><a href="clips/05_holdings_in_any_app.mp4" download>Download MP4</a><a href="subtitles/05_holdings_in_any_app.srt" download>Download SRT</a></p>
-      </div>
-    </article>
-    <article class="clip">
-      <div class="phone"><video src="clips/06_acacia_regulatory_umbrella.mp4#t=1.5" controls playsinline preload="metadata"></video></div>
-      <div class="meta">
-        <div class="row"><span class="num">06</span><span class="tag">Project Acacia</span><span class="len">37s</span></div>
-        <h2>What Project Acacia changed for tokenisation in Australia</h2>
-        <p class="who"><strong>Alan Burt</strong><br>Executive Chairman, Redbelly Network</p>
-        <p class="point">By leaning in through Project Acacia, the RBA gave boards, risk committees and regulators the comfort to pursue tokenisation, a regulatory umbrella to demonstrate benefits estimated at around $20 billion a year.</p>
-        <dl>
-          <dt>Source</dt><dd><a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94" target="_blank" rel="noopener">Redbelly Insights - Episode 26</a> &middot; 26 March 2026</dd>
-          <dt>Timestamp</dt><dd>16:09 &ndash; 16:45</dd>
-        </dl>
-        <div class="caption">
-          <span class="label">Post caption</span>
-          <p>Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA&#x27;s Project Acacia gave them a regulatory umbrella.</p>
-          <button type="button" data-copy="Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA&#x27;s Project Acacia gave them a regulatory umbrella.">Copy caption</button>
+        <details class="transcript"><summary>Transcript</summary><p>Late last year, we came up with MEV accountability, which means that if you try to do a maximum extractable value attack, which means you would probably try to do sandwich attacks, front-running attacks, back-running attacks. If you start doing that, then the system will pick it up and will detect that there is an attempt to do a sandwich attack. And by having the system picking it up, we can also automate a penalty mechanism that says, okay, if you do that too often, it looks like it&#x27;s not random. So you&#x27;re probably trying to make a profit on the back of others. And therefore, you know, you can be punished. So maybe the part of the stake that you have in the system will be slashed, or you&#x27;re going to be kicked out for a while from the system. So we already have this detection in place since last year.</p></details>
+      </article>
+      <article class="card" data-tag="redbelly-tech" id="clip-02">
+        <div class="player">
+          <video src="clips/02_no_forks_no_double_spend.mp4" poster="assets/posters/02_no_forks_no_double_spend.webp" controls playsinline preload="none"
+                 aria-label="Clip 02: No forks. No double spending. Why that matters for big assets."></video>
         </div>
-        <p class="dl"><a href="clips/06_acacia_regulatory_umbrella.mp4" download>Download MP4</a><a href="subtitles/06_acacia_regulatory_umbrella.srt" download>Download SRT</a></p>
+        <div class="card-head"><span class="num">02</span><span class="caps">Redbelly tech</span><span class="len">0:36</span></div>
+        <div class="card-body">
+          <h3>No forks. No double spending. Why that matters for big assets.</h3>
+          <p class="speaker"><b>Vincent Gramoli</b><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
+          <p class="point">Redbelly is seen as an alternative layer one for high-value asset applications because it gives certainty: no forks and no double-spending risk.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 28</span>
+            <span class="mono">EP28 0:53 to 1:30</span>
+            <a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=53.4,89.6" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">149/280</span></div>
+            <p>If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=If%20you%20are%20putting%20high-value%20assets%20on%20a%20blockchain%2C%20forks%20and%20double%20spends%20are%20not%20acceptable.%20Vincent%20Gramoli%20on%20why%20that%20is%20where%20Redbelly%20fits." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/02_no_forks_no_double_spend.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">15 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/02_no_forks_no_double_spend.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
+        </div>
+        <details class="transcript"><summary>Transcript</summary><p>That was a good surprise to also see that people are aware of Redbelly Network, and they see it as an alternative to other layer one blockchains for specific applications. And that was also the topic of my talk over there. HOST: Oh, HOST: fantastic. HOST: So alternative to HOST: Ethereum, HOST: alternative to Solana HOST: and others. Yeah, exactly. If you want some kind of certainty, like, for example, if you don&#x27;t like forks and you don&#x27;t want any risk of double spending, then you might want to implement very high value asset applications, and then Redbelly comes as a nice choice because it offers this kind of strengthened security.</p></details>
+      </article>
+      <article class="card" data-tag="redbelly-tech" id="clip-03">
+        <div class="player">
+          <video src="clips/03_what_pdti_means.mp4" poster="assets/posters/03_what_pdti_means.webp" controls playsinline preload="none"
+                 aria-label="Clip 03: What “public digital token infrastructure” actually means"></video>
+        </div>
+        <div class="card-head"><span class="num">03</span><span class="caps">Redbelly tech</span><span class="len">0:48</span></div>
+        <div class="card-body">
+          <h3>What “public digital token infrastructure” actually means</h3>
+          <p class="speaker"><b>Vincent Gramoli</b><br>Founder &amp; Chief Science Officer, Redbelly Network</p>
+          <p class="point">As public digital token infrastructure (PDTI), Redbelly is permissionless, open-source, compliant with the law and secure enough to protect users, and is a platform that connects people without needing an AFSL.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 28</span>
+            <span class="mono">EP28 7:49 to 8:38</span>
+            <a href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=469.1,517.5" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">148/280</span></div>
+            <p>Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI).</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI)."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=Permissionless%2C%20open%20source%2C%20compliant%20with%20the%20law%3A%20Vincent%20Gramoli%20on%20what%20it%20means%20for%20Redbelly%20to%20be%20public%20digital%20token%20infrastructure%20%28PDTI%29." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/03_what_pdti_means.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">24 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/03_what_pdti_means.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
+        </div>
+        <details class="transcript"><summary>Transcript</summary><p>So Redbelly, as a public digital token infrastructure, is permissionless, open-source software that has finally lowered the barrier of entry for anyone to get access to equal economic opportunities. Right. So that&#x27;s really the end goal. And I think this PDTI means that, oh, Redbelly Network is compliant with the law, and it&#x27;s secure enough to protect the citizen or users. And also it has successfully reached this goal of being a platform of exchanges without needing an Australian financial service licence, because it&#x27;s just the platform that connects people, right? And I think that&#x27;s what we&#x27;re aiming towards.</p></details>
+      </article>
+      <article class="card" data-tag="project-acacia" id="clip-04">
+        <div class="player">
+          <video src="clips/04_acacia_investors_trade_directly.mp4" poster="assets/posters/04_acacia_investors_trade_directly.webp" controls playsinline preload="none"
+                 aria-label="Clip 04: Sell your fund units without waiting for the fund"></video>
+        </div>
+        <div class="card-head"><span class="num">04</span><span class="caps">Project Acacia</span><span class="len">0:45</span></div>
+        <div class="card-body">
+          <h3>Sell your fund units without waiting for the fund</h3>
+          <p class="speaker"><b>Matt Mills</b><br>Chief Customer Officer, Tokeniser</p>
+          <p class="point">In Project Acacia, unit holders could agree a price and swap units directly with each other (the fund only approves the transfer), and anyone can verify it on the Redbelly blockchain instead of trusting Tokeniser.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 26</span>
+            <span class="mono">EP26 21:22 to 22:07</span>
+            <a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=1282.2,1327.0" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">158/280</span></div>
+            <p>In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain.</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=In%20Project%20Acacia%2C%20fund%20investors%20could%20sell%20units%20straight%20to%20another%20holder%20at%20an%20agreed%20price%2C%20and%20anyone%20could%20check%20the%20trade%20on%20the%20Redbelly%20blockchain." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/04_acacia_investors_trade_directly.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">20 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/04_acacia_investors_trade_directly.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
+        </div>
+        <details class="transcript"><summary>Transcript</summary><p>With the swap, what was so cool about that is that meant that unit holders finally had a means of essentially being able to say, and demonstrably commit to, I want to sell my units, and like a traditional OTC market, agree to a price with another unit holder. And then without the fund having to do anything but approve that transfer occurring, those units would swap. And the beautiful thing about all of this is you could see it happen on the blockchain. So you don&#x27;t have to rely on Tokeniser, you don&#x27;t have to trust us, you can see it happen on the Redbelly blockchain and know that that transaction is going to occur. And that combined with the interface and the experience, made it, and what we demonstrated with Acacia was that it was easier, it was faster, it was cheaper, because you cut out all those intermediaries and all those intervening steps.</p></details>
+      </article>
+      <article class="card" data-tag="tokeniser" id="clip-05">
+        <div class="player">
+          <video src="clips/05_holdings_in_any_app.mp4" poster="assets/posters/05_holdings_in_any_app.webp" controls playsinline preload="none"
+                 aria-label="Clip 05: Issued with Tokeniser. Visible in someone else&#x27;s app."></video>
+        </div>
+        <div class="card-head"><span class="num">05</span><span class="caps">Tokeniser</span><span class="len">0:46</span></div>
+        <div class="card-body">
+          <h3>Issued with Tokeniser. Visible in someone else&#x27;s app.</h3>
+          <p class="speaker"><b>Matt Mills</b><br>Chief Customer Officer, Tokeniser</p>
+          <p class="point">Because tokenised fund units live on chain, Open Markets shows investors their holdings by reading the block explorer, with no integration with Tokeniser, so issuers aren&#x27;t locked into one platform.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 26</span>
+            <span class="mono">EP26 34:18 to 35:04</span>
+            <a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=2058.3,2103.9" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">146/280</span></div>
+            <p>Fund units tokenised with Tokeniser show up in investors&#x27; Open Markets accounts, read straight from the block explorer with no integration needed.</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="Fund units tokenised with Tokeniser show up in investors&#x27; Open Markets accounts, read straight from the block explorer with no integration needed."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=Fund%20units%20tokenised%20with%20Tokeniser%20show%20up%20in%20investors%27%20Open%20Markets%20accounts%2C%20read%20straight%20from%20the%20block%20explorer%20with%20no%20integration%20needed." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/05_holdings_in_any_app.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">20 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/05_holdings_in_any_app.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
+        </div>
+        <details class="transcript"><summary>Transcript</summary><p>One of the cool things, another example out of Acacia that demonstrates this, is that we&#x27;re working with some fantastic, the fantastic team at Open Markets. They have a fantastic portfolio tool that their investors can look into, see their holdings. And essentially what we&#x27;ve done via this tokenised managed investment scheme, where people are buying units in a fund, is those same investors can see those holdings on their Open Markets accounts because of an integration, not with Tokeniser directly, but by pulling that data from the block explorer. And so that&#x27;s a really cool, very simple, but very illustrative example of the benefit that being tokenised and being on chain brings, where we can say, hey, you can use us to tokenise, but you don&#x27;t have to use us for your portfolio management.</p></details>
+      </article>
+      <article class="card" data-tag="project-acacia" id="clip-06">
+        <div class="player">
+          <video src="clips/06_acacia_regulatory_umbrella.mp4" poster="assets/posters/06_acacia_regulatory_umbrella.webp" controls playsinline preload="none"
+                 aria-label="Clip 06: What Project Acacia changed for tokenisation in Australia"></video>
+        </div>
+        <div class="card-head"><span class="num">06</span><span class="caps">Project Acacia</span><span class="len">0:37</span></div>
+        <div class="card-body">
+          <h3>What Project Acacia changed for tokenisation in Australia</h3>
+          <p class="speaker"><b>Alan Burt</b><br>Executive Chairman, Redbelly Network</p>
+          <p class="point">By leaning in through Project Acacia, the RBA gave boards, risk committees and regulators the comfort to pursue tokenisation, a regulatory umbrella to demonstrate benefits estimated at around $20 billion a year.</p>
+          <div class="source">
+            <span>Redbelly Insights - Episode 26</span>
+            <span class="mono">EP26 16:09 to 16:46</span>
+            <a href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=969.2,1006.0" target="_blank" rel="noopener">Play in source episode</a>
+          </div>
+          <div class="post">
+            <div class="post-top"><span class="caps">Post caption</span><span class="mono">143/280</span></div>
+            <p>Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA&#x27;s Project Acacia gave them a regulatory umbrella.</p>
+            <div class="row">
+              <button type="button" class="btn btn-ghost btn-sm" data-copy="Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA&#x27;s Project Acacia gave them a regulatory umbrella."><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 11V4a1 1 0 0 1 1-1h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Copy</button>
+              <a class="btn btn-ghost btn-sm" href="https://x.com/intent/post?text=Boards%2C%20risk%20committees%20and%20regulators%20were%20too%20gun-shy%20to%20tokenise.%20Alan%20Burt%20on%20how%20the%20RBA%27s%20Project%20Acacia%20gave%20them%20a%20regulatory%20umbrella." target="_blank" rel="noopener">Post on X</a>
+            </div>
+          </div>
+          <div class="card-foot">
+            <a class="btn btn-primary btn-sm" href="clips/06_acacia_regulatory_umbrella.mp4" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>MP4 <span class="mono">19 MB</span></a>
+            <a class="btn btn-ghost btn-sm" href="subtitles/06_acacia_regulatory_umbrella.srt" download><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>SRT</a>
+          </div>
+        </div>
+        <details class="transcript"><summary>Transcript</summary><p>And I think we&#x27;ve also talked about Project Acacia previously, where the RBA, thank goodness, has leant in and gives people a lot of relief to make it feel comfortable that they can pursue their tokenisation agenda, but make boards comfortable, make risk committees comfortable, make regulators comfortable. And so that&#x27;s been a real big catalyst for us to do the things that people have wanted to do, but have been too gun-shy to do. And so they&#x27;ve given us a regulatory umbrella that&#x27;s allowed us to do that, and demonstrate and showcase the benefits to the economy. The number is something like $20 billion in saving annually. So we need to do this. And moreover, we have an opportunity to export that amazing regulatory framework into the world.</p></details>
+      </article>
       </div>
-    </article>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="caps">Deliverable 2</div>
+          <h2>Source episode, timestamp and post caption</h2>
+          <p>Every timestamp links to the official episode file at that range, so each quote can be checked against the
+            original in one click. The same list is in <a href="CLIP_LIST.md">CLIP_LIST.md</a>.</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Clip</th><th>Episode</th><th>Source range</th><th>Speaker</th><th>Post caption</th></tr></thead>
+          <tbody><tr><td class="mono">01</td><td><a href="#clip-01">Sandwich attacks on Redbelly get detected. Then punished.</a></td><td>Redbelly Insights - Episode 28<br><span class="mono" style="color:var(--outline)">11 June 2026</span></td><td><a class="mono" href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=965.4,1018.0" target="_blank" rel="noopener">16:05 to 16:58</a></td><td>Vincent Gramoli<br><span style="color:var(--outline)">Founder &amp; Chief Science Officer, Redbelly Network</span></td><td>Front-running and sandwich attacks drain ordinary users on most chains. On Redbelly they are detected, and repeat offenders can lose stake.</td></tr><tr><td class="mono">02</td><td><a href="#clip-02">No forks. No double spending. Why that matters for big assets.</a></td><td>Redbelly Insights - Episode 28<br><span class="mono" style="color:var(--outline)">11 June 2026</span></td><td><a class="mono" href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=53.4,89.6" target="_blank" rel="noopener">0:53 to 1:30</a></td><td>Vincent Gramoli<br><span style="color:var(--outline)">Founder &amp; Chief Science Officer, Redbelly Network</span></td><td>If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.</td></tr><tr><td class="mono">03</td><td><a href="#clip-03">What “public digital token infrastructure” actually means</a></td><td>Redbelly Insights - Episode 28<br><span class="mono" style="color:var(--outline)">11 June 2026</span></td><td><a class="mono" href="https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4#t=469.1,517.5" target="_blank" rel="noopener">7:49 to 8:38</a></td><td>Vincent Gramoli<br><span style="color:var(--outline)">Founder &amp; Chief Science Officer, Redbelly Network</span></td><td>Permissionless, open source, compliant with the law: Vincent Gramoli on what it means for Redbelly to be public digital token infrastructure (PDTI).</td></tr><tr><td class="mono">04</td><td><a href="#clip-04">Sell your fund units without waiting for the fund</a></td><td>Redbelly Insights - Episode 26<br><span class="mono" style="color:var(--outline)">26 March 2026</span></td><td><a class="mono" href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=1282.2,1327.0" target="_blank" rel="noopener">21:22 to 22:07</a></td><td>Matt Mills<br><span style="color:var(--outline)">Chief Customer Officer, Tokeniser</span></td><td>In Project Acacia, fund investors could sell units straight to another holder at an agreed price, and anyone could check the trade on the Redbelly blockchain.</td></tr><tr><td class="mono">05</td><td><a href="#clip-05">Issued with Tokeniser. Visible in someone else&#x27;s app.</a></td><td>Redbelly Insights - Episode 26<br><span class="mono" style="color:var(--outline)">26 March 2026</span></td><td><a class="mono" href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=2058.3,2103.9" target="_blank" rel="noopener">34:18 to 35:04</a></td><td>Matt Mills<br><span style="color:var(--outline)">Chief Customer Officer, Tokeniser</span></td><td>Fund units tokenised with Tokeniser show up in investors&#x27; Open Markets accounts, read straight from the block explorer with no integration needed.</td></tr><tr><td class="mono">06</td><td><a href="#clip-06">What Project Acacia changed for tokenisation in Australia</a></td><td>Redbelly Insights - Episode 26<br><span class="mono" style="color:var(--outline)">26 March 2026</span></td><td><a class="mono" href="https://firebasestorage.googleapis.com/v0/b/redbelly-website.firebasestorage.app/o/RBI_EP26.mp4?alt=media&amp;token=ce10a8dd-1721-4272-bd43-f3e6be081d94#t=969.2,1006.0" target="_blank" rel="noopener">16:09 to 16:46</a></td><td>Alan Burt<br><span style="color:var(--outline)">Executive Chairman, Redbelly Network</span></td><td>Boards, risk committees and regulators were too gun-shy to tokenise. Alan Burt on how the RBA&#x27;s Project Acacia gave them a regulatory umbrella.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="checks">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="caps">Verification</div>
+          <h2>Measured from the files</h2>
+          <p>These numbers come from <span class="mono">tools/verify.py</span>, which reads every MP4 and SRT and fails
+            on any problem. Full results, including the subtitle cross-check against three transcripts, are in
+            <a href="verification/REPORT.md">verification/REPORT.md</a>.</p>
+        </div>
+      </div>
+      <div class="summary">
+        <div class="panel"><span class="caps">Checks passed</span><b>60/60</b>
+          <p>Per clip: 9:16 aspect, &gt;=1080p, &gt;=24 fps, mp4 / h.264 / aac, 30-60 s, subtitles cover speech, no misspelt terms, speaker in frame, loudness -14 lufs +-1, no credit in metadata.</p></div>
+        <div class="panel"><span class="caps">Even audio</span><b>-14.2 LUFS</b>
+          <p>Average integrated loudness. The six clips are within 0.3 LU of each other.</p></div>
+        <div class="panel"><span class="caps">Speaker in frame</span><b>1286/1286</b>
+          <p>Face samples, taken every 0.2 s of source video, that sit inside the crop used for that shot.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Clip</th><th>Video</th><th>Length</th><th>Loudness</th><th>True peak</th><th>Captions</th><th>Face in frame</th><th>Result</th></tr></thead>
+          <tbody><tr><td class="mono">01</td><td>Sandwich attacks on Redbelly get detected. Then punished.</td><td class="mono">1080x1920 30 fps</td><td class="mono">52.6 s</td><td class="mono">-14.2 LUFS</td><td class="mono">-1.2 dBTP</td><td class="mono">46 cues</td><td class="mono">264/264</td><td><span class="status">10/10 PASS</span></td></tr><tr><td class="mono">02</td><td>No forks. No double spending. Why that matters for big assets.</td><td class="mono">1080x1920 30 fps</td><td class="mono">36.3 s</td><td class="mono">-14.1 LUFS</td><td class="mono">-1.0 dBTP</td><td class="mono">37 cues</td><td class="mono">185/185</td><td><span class="status">10/10 PASS</span></td></tr><tr><td class="mono">03</td><td>What “public digital token infrastructure” actually means</td><td class="mono">1080x1920 30 fps</td><td class="mono">48.5 s</td><td class="mono">-14.2 LUFS</td><td class="mono">-1.1 dBTP</td><td class="mono">38 cues</td><td class="mono">243/243</td><td><span class="status">10/10 PASS</span></td></tr><tr><td class="mono">04</td><td>Sell your fund units without waiting for the fund</td><td class="mono">1080x1920 30 fps</td><td class="mono">44.8 s</td><td class="mono">-14.4 LUFS</td><td class="mono">-1.1 dBTP</td><td class="mono">51 cues</td><td class="mono">215/215</td><td><span class="status">10/10 PASS</span></td></tr><tr><td class="mono">05</td><td>Issued with Tokeniser. Visible in someone else&#x27;s app.</td><td class="mono">1080x1920 30 fps</td><td class="mono">45.6 s</td><td class="mono">-14.4 LUFS</td><td class="mono">-1.1 dBTP</td><td class="mono">47 cues</td><td class="mono">203/203</td><td><span class="status">10/10 PASS</span></td></tr><tr><td class="mono">06</td><td>What Project Acacia changed for tokenisation in Australia</td><td class="mono">1080x1920 30 fps</td><td class="mono">36.7 s</td><td class="mono">-14.2 LUFS</td><td class="mono">-1.3 dBTP</td><td class="mono">42 cues</td><td class="mono">176/176</td><td><span class="status">10/10 PASS</span></td></tr></tbody>
+        </table>
+      </div>
+      <p class="note">Last verified <span class="mono">2026-10-25</span>.</p>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="caps">Method</div>
+          <h2>How the pack was made</h2>
+          <p>Every step is a script in <span class="mono">tools/</span>, driven by <span class="mono">clips.json</span>,
+            so the whole pack can be rebuilt and checked from the official episodes.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="mono">01 SOURCES</span><h3>Official episodes only</h3>
+          <p>The episode files linked from redbelly.network/ama. Episodes 26 to 29 were transcribed in full. No music,
+            stock footage or third party material is added.</p></div>
+        <div class="step"><span class="mono">02 SELECTION</span><h3>One passage, one point</h3>
+          <p>Each clip is a single uninterrupted passage about Redbelly technology, Project Acacia or Tokeniser. No
+            internal cuts, so no quote is joined to words said elsewhere. No two clips make the same point.</p></div>
+        <div class="step"><span class="mono">03 FRAMING AND CAPTIONS</span><h3>Speaker in shot, words checked</h3>
+          <p>Faces are tracked every 0.2 s to set a 9:16 crop per camera shot. Caption text is proof-read against three
+            separate Whisper transcripts, and names and terms are fixed by hand.</p></div>
+        <div class="step"><span class="mono">04 AUDIO AND CHECKS</span><h3>Even loudness, measured output</h3>
+          <p>Two-pass EBU R128 normalisation to -14 LUFS. The verify step measures specs, length, caption coverage,
+            spelling, framing, loudness and a personal-credit scan for every file.</p></div>
+      </div>
+<pre><code>export WORK=$PWD/work
+tools/fetch.sh                                   # official episodes, audio, face model
+python3 tools/transcribe.py small.en $WORK/aud/ep26.wav $WORK/tx/ep26.json
+python3 tools/transcribe.py small.en $WORK/aud/ep28.wav $WORK/tx/ep28.json
+python3 tools/build.py                           # clips/*.mp4 and subtitles/*.srt
+python3 tools/verify.py                          # verification/REPORT.md and report.json
+python3 tools/clip_list.py                       # CLIP_LIST.md
+python3 tools/site.py                            # this page, posters and og.png</code></pre>
+    </div>
+  </section>
 </main>
-<footer>Source list with timestamps: <a href="CLIP_LIST.md">CLIP_LIST.md</a> &middot; Checks: <a href="verification/REPORT.md">verification/REPORT.md</a></footer>
-<script>
-  document.querySelectorAll('button[data-copy]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy caption'; }, 1500); };
-      try { navigator.clipboard.writeText(b.dataset.copy).then(done, function () {}); } catch (e) {}
-    });
-  });
-</script>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="logo-dark" src="assets/brand/dao-logo-on-dark.png" alt="Redbelly DAO" width="62" height="44">
+    <img class="logo-light" src="assets/brand/dao-logo-on-light.png" alt="Redbelly DAO" width="62" height="44">
+    <p>All footage and audio comes from official Redbelly Insights episodes at
+      <a href="https://redbelly.network/ama" target="_blank" rel="noopener">redbelly.network/ama</a>. No music or third
+      party material is added. Last verified <span class="mono">2026-10-25</span>.</p>
+    <nav aria-label="Files"><a href="README.md">README</a><a href="CLIP_LIST.md">Clip list</a>
+      <a href="verification/REPORT.md">Verification report</a><a href="clips.json">clips.json</a></nav>
+  </div>
+</footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="assets/site.js"></script>
 </body>
 </html>

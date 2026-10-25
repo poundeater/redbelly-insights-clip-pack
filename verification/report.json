@@ -1,0 +1,212 @@
+{
+  "date": "2026-10-25",
+  "passed": true,
+  "failures": [],
+  "loudness_spread_lu": 0.3,
+  "clips": {
+    "01_mev_attacks_get_caught": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 52.6,
+      "size_mb": 26.9,
+      "lufs": -14.2,
+      "lra": 2.3,
+      "true_peak": -1.2,
+      "cues": 46,
+      "speech_covered": 50.3,
+      "face_in_crop": 264,
+      "face_samples": 264,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          154,
+          0.01948051948051948,
+          0.006493506493506494,
+          0.01948051948051948
+        ]
+      ]
+    },
+    "02_no_forks_no_double_spend": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 36.3,
+      "size_mb": 14.9,
+      "lufs": -14.1,
+      "lra": 2.9,
+      "true_peak": -1.0,
+      "cues": 37,
+      "speech_covered": 36.2,
+      "face_in_crop": 185,
+      "face_samples": 185,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          105,
+          0.01904761904761905,
+          0.8,
+          0.17142857142857143
+        ]
+      ]
+    },
+    "03_what_pdti_means": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 48.5,
+      "size_mb": 24.5,
+      "lufs": -14.2,
+      "lra": 4.0,
+      "true_peak": -1.1,
+      "cues": 38,
+      "speech_covered": 48.1,
+      "face_in_crop": 243,
+      "face_samples": 243,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          100,
+          0.08,
+          0.06,
+          0.05
+        ]
+      ]
+    },
+    "04_acacia_investors_trade_directly": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 44.8,
+      "size_mb": 20.5,
+      "lufs": -14.4,
+      "lra": 3.2,
+      "true_peak": -1.1,
+      "cues": 51,
+      "speech_covered": 44.8,
+      "face_in_crop": 215,
+      "face_samples": 215,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          156,
+          0.019230769230769232,
+          0.0,
+          0.01282051282051282
+        ]
+      ]
+    },
+    "05_holdings_in_any_app": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 45.6,
+      "size_mb": 19.8,
+      "lufs": -14.4,
+      "lra": 4.2,
+      "true_peak": -1.1,
+      "cues": 47,
+      "speech_covered": 45.5,
+      "face_in_crop": 203,
+      "face_samples": 203,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          135,
+          0.02962962962962963,
+          0.007407407407407408,
+          0.05925925925925926
+        ]
+      ]
+    },
+    "06_acacia_regulatory_umbrella": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30.0,
+      "duration": 36.7,
+      "size_mb": 19.4,
+      "lufs": -14.2,
+      "lra": 3.3,
+      "true_peak": -1.3,
+      "cues": 42,
+      "speech_covered": 36.7,
+      "face_in_crop": 176,
+      "face_samples": 176,
+      "checks": {
+        "9:16 aspect": true,
+        ">=1080p": true,
+        ">=24 fps": true,
+        "MP4 / H.264 / AAC": true,
+        "30-60 s": true,
+        "subtitles cover speech": true,
+        "no misspelt terms": true,
+        "speaker in frame": true,
+        "loudness -14 LUFS +-1": true,
+        "no credit in metadata": true
+      },
+      "wer": [
+        [
+          130,
+          0.07692307692307693,
+          0.8846153846153846,
+          0.03076923076923077
+        ]
+      ]
+    }
+  }
+}

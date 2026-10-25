@@ -12,6 +12,7 @@
           0
         ],
         "target": "largest",
+        "freeze_at": null,
         "face_samples": 195,
         "face_in_crop": 195
       },
@@ -25,6 +26,7 @@
           146
         ],
         "target": "left",
+        "freeze_at": null,
         "face_samples": 69,
         "face_in_crop": 69
       }
@@ -54,6 +56,7 @@
           101
         ],
         "target": "left",
+        "freeze_at": null,
         "face_samples": 30,
         "face_in_crop": 30
       },
@@ -67,6 +70,7 @@
           0
         ],
         "target": "largest",
+        "freeze_at": null,
         "face_samples": 38,
         "face_in_crop": 38
       },
@@ -80,6 +84,7 @@
           109
         ],
         "target": "left",
+        "freeze_at": null,
         "face_samples": 29,
         "face_in_crop": 29
       },
@@ -93,6 +98,7 @@
           0
         ],
         "target": "largest",
+        "freeze_at": null,
         "face_samples": 88,
         "face_in_crop": 88
       }
@@ -122,6 +128,7 @@
           0
         ],
         "target": "largest",
+        "freeze_at": null,
         "face_samples": 243,
         "face_in_crop": 243
       }
@@ -151,6 +158,7 @@
           0
         ],
         "target": "left",
+        "freeze_at": null,
         "face_samples": 215,
         "face_in_crop": 215
       }
@@ -238,6 +246,7 @@
           0
         ],
         "target": "right",
+        "freeze_at": null,
         "face_samples": 176,
         "face_in_crop": 176
       }

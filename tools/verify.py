@@ -139,13 +139,15 @@ def main():
                                wer(ref, asr_text(med, pc["start"], pc["end"])),
                                wer(ref, asr_text(large, pc["start"], pc["end"]))))
 
-    # Personal-credit scan of every deliverable text file.
-    for base in ["README.md", "CLIP_LIST.md", "clips.json"] + [os.path.join("subtitles", f) for f in
-                                                                os.listdir(os.path.join(ROOT, "subtitles"))]:
+    # Personal-credit scan of every deliverable text file, plus the brand kit's "no em or en dashes" rule.
+    pages = [p for p in ["README.md", "CLIP_LIST.md", "clips.json", "index.html"] if os.path.exists(os.path.join(ROOT, p))]
+    for base in pages + [os.path.join("subtitles", f) for f in os.listdir(os.path.join(ROOT, "subtitles"))]:
         text = open(os.path.join(ROOT, base)).read()
         for c in CREDIT_PATTERNS:
             for m in re.finditer(c, text, re.I):
                 fails.append(f"{base}: possible personal credit '{m.group(0)}'")
+        if re.search("[–—]|&[nm]dash;", text):
+            fails.append(f"{base}: em or en dash (not allowed by the brand kit)")
 
     all_subs = " ".join(open(os.path.join(ROOT, "subtitles", f)).read() for f in os.listdir(os.path.join(ROOT, "subtitles")))
     all_copy = all_subs + json.dumps(cfg, ensure_ascii=False)
@@ -191,6 +193,16 @@ def main():
             out.append(f"| {cid} | {a:.2f}-{b:.2f} | {n} | {ws:.1%} | {wm:.1%} | {wl:.1%} |")
         out.append("")
     open(os.path.join(ROOT, "verification", "REPORT.md"), "w").write("\n".join(out))
+    # Machine-readable copy of the same measurements, used by tools/site.py for the review page.
+    report = {"date": __import__("datetime").date.today().isoformat(), "passed": not fails, "failures": fails,
+              "loudness_spread_lu": round(max(lufs) - min(lufs), 2), "clips": {}}
+    for cid, p, i, lra, tp, ncue, spoken, inc, samp, checks in rows:
+        report["clips"][cid] = {"width": p["w"], "height": p["h"], "fps": round(p["fps"], 3),
+                                "duration": round(p["dur"], 2), "size_mb": round(p["size_mb"], 1),
+                                "lufs": i, "lra": lra, "true_peak": tp, "cues": ncue,
+                                "speech_covered": round(spoken, 1), "face_in_crop": inc, "face_samples": samp,
+                                "checks": checks, "wer": [list(x[3:]) for x in xcheck if x[0] == cid]}
+    json.dump(report, open(os.path.join(ROOT, "verification", "report.json"), "w"), indent=2)
     print("\n".join(out))
     sys.exit(1 if fails else 0)
 

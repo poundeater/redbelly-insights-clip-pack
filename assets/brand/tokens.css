@@ -1,0 +1,62 @@
+/* Redbelly DAO Task Board brand tokens. Generated from app/globals.css, do not edit by hand. */
+/* Dark is the default. Set data-theme="light" on the root element for the light theme. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --surface: #0c1317;
+  --background-deep: #0a1014;
+  --surface-container-lowest: #070c0f;
+  --surface-container-low: #111a20;
+  --surface-container: #17222a;
+  --surface-container-high: #223039;
+  --surface-container-highest: #2e3e49;
+  --surface-slate: #141f26;
+  --surface-steel: #1d3140;
+  --panel-edge: #263641;
+  --on-surface: #f1f5f8;
+  --on-surface-variant: #c2ced6;
+  --outline: #8fa1ad;
+  --outline-variant: #34444f;
+  --brand: #EF5350;
+  --brand-hover: #f95a56;
+  --on-brand: #ffffff;
+  --primary: #ffb3ae;
+  --ok: #86EFAC;
+  --warn: #FCD34D;
+  --error: #ffb4ab;
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius-base: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+  --space-base: 4px;
+  --space-gutter: 24px;
+  --space-margin-mobile: 16px;
+  --space-margin-desktop: 64px;
+  --space-max-width: 1280px;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --surface: #EDF1F4;
+  --background-deep: #EDF1F4;
+  --surface-container-lowest: #FFFFFF;
+  --surface-container-low: #F4F6F8;
+  --surface-container: #E6EBEF;
+  --surface-container-high: #DAE1E7;
+  --surface-container-highest: #CCD6DD;
+  --surface-slate: #FFFFFF;
+  --surface-steel: #DDE6ED;
+  --panel-edge: #D3DBE1;
+  --on-surface: #0F1A22;
+  --on-surface-variant: #394853;
+  --outline: #596975;
+  --outline-variant: #C3CDD4;
+  --brand: #EF5350;
+  --brand-hover: #D93E3B;
+  --on-brand: #ffffff;
+  --primary: #B3272A;
+  --ok: #15803D;
+  --warn: #A16207;
+  --error: #B3261E;
+}

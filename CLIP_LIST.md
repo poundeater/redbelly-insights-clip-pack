@@ -36,7 +36,7 @@ Timestamps are `m:ss.ss` from the start of the official episode video linked in 
 - **Suggested post caption:** If you are putting high-value assets on a blockchain, forks and double spends are not acceptable. Vincent Gramoli on why that is where Redbelly fits.
 - **Note:** The host's line (shown in italics, marked HOST in the .srt) is kept because it names the chains Vincent is comparing against.
 
-### 3. “Public digital token infrastructure”, in 45 seconds
+### 3. What “public digital token infrastructure” actually means
 
 - **File:** `clips/03_what_pdti_means.mp4`. Subtitles are burned in and also in `subtitles/03_what_pdti_means.srt`.
 - **Source:** Redbelly Insights - Episode 28, 11 June 2026. Video: https://storage.googleapis.com/redbelly-website.firebasestorage.app/Video/rb_ep_28_final_745719acdb/rb_ep_28_final_745719acdb.mp4

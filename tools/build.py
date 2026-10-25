@@ -1,14 +1,17 @@
-"""Render the clip pack described in clips.json.
+"""Render the clip pack described in clips.json, styled to the Redbelly DAO Task Board brand kit
+(https://taskboard.redbellydao.network/brand): Be Vietnam Pro for all copy, JetBrains Mono for machine values
+(episode and timestamp), slate surfaces, and #EF5350 as the single accent.
 
-Look: the speaker fills the whole 9:16 frame. The first seconds are a title card (hook, name, role) over a
-dimmed picture; after that a topic pill, a name line and a progress bar sit at the top, and short
-phrase captions pop in over the lower third with Redbelly terms and figures in amber.
+Look: the speaker fills the whole 9:16 frame. For the first seconds a solid slate sheet at the bottom carries
+the DAO logo, the hook and the speaker's name and role, while the speaker stays visible above it. After that a
+red topic tag, the name and role, and the source episode/timestamp sit at the top with a red progress bar, and
+short phrase captions pop in over the lower third with Redbelly terms and figures in brand red.
 
 For every clip this script
   1. plans a 9:16 crop per camera shot that keeps the speaker's face in frame (tools/faces.py data),
   2. aligns the proof-read subtitle text to Whisper word timestamps,
-  3. writes an ASS overlay (title card, pill, name line, progress bar, captions) and a sidecar SRT,
-  4. renders a 1080x1920, 30 fps H.264 MP4 with everything burned in,
+  3. writes an ASS overlay (opening sheet, tag, name line, source line, progress bar, captions) and an SRT,
+  4. renders a 1080x1920, 30 fps H.264 MP4 with everything burned in and the logo on the opening sheet,
   5. normalises loudness to -14 LUFS / -1.5 dBTP with two-pass EBU R128 loudnorm.
 
 usage: python3 tools/build.py [clip_id ...]        (WORK env var points at the work dir, default ./work)
@@ -27,13 +30,23 @@ import numpy as np
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORK = os.environ.get("WORK", os.path.join(ROOT, "work"))
 OUT_W, OUT_H, FPS = 1080, 1920, 30
-CARD = 3.0                         # seconds the opening title card stays up
-AMBER = "&H3D8AFF&"                # #FF8A3D in ASS BGR order
-WHITE = "&HFFFFFF&"
+CARD = 3.2                         # seconds the opening sheet stays up
+SHEET_Y = 1100                     # top edge of the opening sheet (content stays above the platform UI zone)
 LUFS, TRUE_PEAK, LRA = -14.0, -1.5, 11.0
-FONT = "Inter"
+FONT, MONO = "Be Vietnam Pro", "JetBrains Mono"
+FONTS_DIR = os.path.join(ROOT, "assets", "fonts")
+LOGO = os.path.join(ROOT, "assets", "brand", "dao-logo-on-dark.png")
+LOGO_H = 132                       # logo file height on the sheet (the file carries its own clear space)
 
-# Terms drawn in amber inside captions (matched case-sensitively on whole words/phrases).
+# Brand kit colours in ASS order (&HBBGGRR&).
+RED = "&H5053EF&"                  # #EF5350 brand
+TEXT = "&HF8F5F1&"                 # #f1f5f8 on-surface
+TEXT2 = "&HD6CEC2&"                # #c2ced6 on-surface-variant
+SURFACE = "&H17130C&"              # #0c1317 surface
+EDGE = "&H413626&"                 # #263641 panel edge
+INK = "&H0F0C07&"                  # #070c0f container lowest, used for caption outlines
+
+# Terms drawn in brand red inside captions (matched case-sensitively on whole words/phrases).
 EMPHASIS = ["Redbelly Network", "Redbelly", "Tokeniser", "Project Acacia", "Acacia", "AUDM", "PDTI", "MEV",
             "Open Markets", "RBA", "block explorer", "blockchain"]
 
@@ -178,15 +191,20 @@ def esc(s):
 def emphasise(text):
     out = esc(text)
     for term in EMPHASIS:
-        out = re.sub(rf"(?<![\w{{]){re.escape(term)}(?!\w)", lambda m: f"{{\\c{AMBER}}}{m.group(0)}{{\\c{WHITE}}}", out)
-    # Figures (e.g. 2019, 20 billion) are amber too.
+        out = re.sub(rf"(?<![\w{{]){re.escape(term)}(?!\w)", lambda m: f"{{\\c{RED}}}{m.group(0)}{{\\c{TEXT}}}", out)
+    # Figures (e.g. 2019, 20 billion) are brand red too.
     out = re.sub(r"(?<![\w&])(\d[\d,.]*( billion| million| trillion)?)",
-                 lambda m: f"{{\\c{AMBER}}}{m.group(0)}{{\\c{WHITE}}}", out)
+                 lambda m: f"{{\\c{RED}}}{m.group(0)}{{\\c{TEXT}}}", out)
     return out
+
+
+def mmss(t):
+    return f"{int(t // 60)}:{int(t % 60):02d}"
 
 
 def write_subs(clip, episode, words, duration, ass_path, srt_path):
     ep_no = re.search(r"(\d+)$", episode["title"]).group(1)
+    source = f"EP{ep_no} {mmss(clip['pieces'][0]['start'])}"
     hook = esc(clip["hook"]).replace("\n", "\\N")
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -197,34 +215,39 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,{FONT},78,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,5,70,70,0,1
-Style: Card,{FONT},86,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,0,4,5,80,80,0,1
-Style: CardSub,{FONT},40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,2,5,80,80,0,1
-Style: Pill,{FONT},30,&H00101010,&H00101010,&H003D8AFF,&H003D8AFF,-1,0,0,0,100,100,3,0,3,12,0,7,60,60,0,1
-Style: Who,{FONT},32,&H00FFFFFF,&H00FFFFFF,&H64000000,&H64000000,-1,0,0,0,100,100,0,0,3,10,0,7,60,60,0,1
-Style: Src,{FONT},26,&H00FFFFFF,&H00FFFFFF,&H64000000,&H64000000,0,0,0,0,100,100,1,0,3,8,0,9,60,60,0,1
-Style: Draw,{FONT},20,&H003D8AFF,&H003D8AFF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+Style: Cap,{FONT},76,&H00F8F5F1,&H00F8F5F1,&H000F0C07,&H000F0C07,-1,0,0,0,100,100,0,0,1,6,0,5,64,64,0,1
+Style: Hook,{FONT},64,&H00F8F5F1,&H00F8F5F1,&H00000000,&H00000000,-1,0,0,0,100,100,-1,0,1,0,0,7,72,72,0,1
+Style: Name,{FONT},38,&H00F8F5F1,&H00F8F5F1,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,0,0,7,72,72,0,1
+Style: Role,{FONT},30,&H00D6CEC2,&H00D6CEC2,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,72,72,0,1
+Style: Tag,{FONT},28,&H00FFFFFF,&H00FFFFFF,&H005053EF,&H005053EF,-1,0,0,0,100,100,3,0,3,9,0,7,64,64,0,1
+Style: Who,{FONT},38,&H00F8F5F1,&H00F8F5F1,&H3017130C,&H3017130C,-1,0,0,0,100,100,0,0,3,8,0,7,64,64,0,1
+Style: Mono,{MONO},28,&H00D6CEC2,&H00D6CEC2,&H3017130C,&H3017130C,0,0,0,0,100,100,1,0,3,8,0,9,64,64,0,1
+Style: Draw,{FONT},20,&H005053EF,&H005053EF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
-    end = ts_ass(duration)
-    card_end = ts_ass(CARD)
-    full = f"m 0 0 l {OUT_W} 0 {OUT_W} {OUT_H} 0 {OUT_H}"
+    end, card_end = ts_ass(duration), ts_ass(CARD)
+    fade = "\\fad(220,280)"
+    sheet = f"m 0 0 l {OUT_W} 0 {OUT_W} {OUT_H - SHEET_Y} 0 {OUT_H - SHEET_Y}"
+    logo_w = round(LOGO_H * 1434 / 1024)
+    hook_y = SHEET_Y + 36 + LOGO_H + 22
     ev = [
-        # Opening title card: dim the picture, big hook, then the speaker's name and role.
-        f"Dialogue: 2,0:00:00.00,{card_end},Draw,,0,0,0,,{{\\an7\\pos(0,0)\\1c&H000000&\\1a&H50&\\fad(0,350)\\p1}}{full}",
-        f"Dialogue: 3,0:00:00.00,{card_end},Card,,0,0,0,,{{\\an5\\pos(540,820)\\fad(200,350)\\t(0,250,\\fscx100\\fscy100)\\fscx94\\fscy94}}{hook}",
-        f"Dialogue: 3,0:00:00.00,{card_end},Draw,,0,0,0,,{{\\an7\\pos(470,1000)\\fad(200,350)\\p1}}m 0 0 l 140 0 140 8 0 8",
-        f"Dialogue: 3,0:00:00.30,{card_end},CardSub,,0,0,0,,{{\\an5\\pos(540,1085)\\fad(250,350)\\b1}}{esc(clip['speaker'])}",
-        f"Dialogue: 3,0:00:00.30,{card_end},CardSub,,0,0,0,,{{\\an5\\pos(540,1140)\\fad(250,350)\\fs32}}{esc(clip['role'])}",
-        # After the card: topic pill, name line and source line at the top, plus a progress bar.
-        f"Dialogue: 1,{card_end},{end},Pill,,0,0,0,,{{\\an7\\pos(60,96)\\fad(300,0)}}{esc(clip['tag'].upper())}",
-        f"Dialogue: 1,{card_end},{end},Who,,0,0,0,,{{\\an7\\pos(60,160)\\fad(300,0)}}{esc(clip['speaker'])}"
-        f"{{\\b0\\fs28\\c&HDDDDDD&}}\\N{esc(clip['role'])}",
-        f"Dialogue: 1,{card_end},{end},Src,,0,0,0,,{{\\an9\\pos(1020,104)\\fad(300,0)}}REDBELLY INSIGHTS · EP {ep_no}",
+        # Opening sheet: solid slate, 1px panel edge, a red brand bar, then label, hook, name and role.
+        f"Dialogue: 2,0:00:00.00,{card_end},Draw,,0,0,0,,{{\\an7\\pos(0,{SHEET_Y})\\1c{SURFACE}{fade}\\p1}}{sheet}",
+        f"Dialogue: 3,0:00:00.00,{card_end},Draw,,0,0,0,,{{\\an7\\pos(0,{SHEET_Y})\\1c{EDGE}{fade}\\p1}}m 0 0 l {OUT_W} 0 {OUT_W} 2 0 2",
+        f"Dialogue: 3,0:00:00.00,{card_end},Draw,,0,0,0,,{{\\an7\\pos(72,{SHEET_Y})\\1c{RED}{fade}\\p1}}m 0 0 l 120 0 120 8 0 8",
+        f"Dialogue: 3,0:00:00.00,{card_end},Mono,,0,0,0,,{{\\an9\\pos(1008,{SHEET_Y + 60}){fade}\\bord0}}REDBELLY INSIGHTS\\N{source}",
+        f"Dialogue: 3,0:00:00.10,{card_end},Hook,,0,0,0,,{{\\an7\\pos(72,{hook_y}){fade}}}{hook}",
+        f"Dialogue: 3,0:00:00.35,{card_end},Name,,0,0,0,,{{\\an7\\pos(72,{hook_y + 196}){fade}}}{esc(clip['speaker'])}",
+        f"Dialogue: 3,0:00:00.35,{card_end},Role,,0,0,0,,{{\\an7\\pos(72,{hook_y + 246}){fade}}}{esc(clip['role'])}",
+        # After the sheet: red topic tag, name and role, source episode and timestamp, progress bar.
+        f"Dialogue: 1,{card_end},{end},Tag,,0,0,0,,{{\\an7\\pos(64,92)\\fad(250,0)}}{esc(clip['tag'].upper())}",
+        f"Dialogue: 1,{card_end},{end},Who,,0,0,0,,{{\\an7\\pos(64,156)\\fad(250,0)}}{esc(clip['speaker'])}"
+        f"{{\\b0\\fs30\\c{TEXT2}}}\\N{esc(clip['role'])}",
+        f"Dialogue: 1,{card_end},{end},Mono,,0,0,0,,{{\\an9\\pos(1016,96)\\fad(250,0)}}{source}",
         f"Dialogue: 4,0:00:00.00,{end},Draw,,0,0,0,,{{\\an7\\pos(0,0)\\clip(0,0,0,{OUT_H})"
-        f"\\t(0,{int(duration * 1000)},\\clip(0,0,{OUT_W},{OUT_H}))\\p1}}m 0 0 l {OUT_W} 0 {OUT_W} 10 0 10",
+        f"\\t(0,{int(duration * 1000)},\\clip(0,0,{OUT_W},{OUT_H}))\\p1}}m 0 0 l {OUT_W} 0 {OUT_W} 8 0 8",
     ]
     srt = []
     groups = phrases(words)
@@ -232,19 +255,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         e = groups[n + 1][0]["s"] if n + 1 < len(groups) else min(duration, g[-1]["e"] + 0.5)
         e = min(e, g[-1]["e"] + 0.7)
         text = " ".join(w["w"] for w in g)
-        # Captions sit higher while the title card is up so both stay readable.
-        y = 1560 if g[0]["s"] < CARD else 1380
+        # While the opening sheet is up, captions sit just above it.
+        y = SHEET_Y - 110 if g[0]["s"] < CARD else 1400
         if g[0].get("host"):
-            body = f"{{\\i1\\c&HD0D0D0&\\fs62}}{esc(text)}"
+            body = f"{{\\i1\\c{TEXT2}\\fs62}}{esc(text)}"
             text = "HOST: " + text
         else:
             body = emphasise(text)
         ev.append(f"Dialogue: 5,{ts_ass(g[0]['s'])},{ts_ass(e)},Cap,,0,0,0,,"
-                  f"{{\\an5\\pos(540,{y})\\fscx88\\fscy88\\t(0,90,\\fscx100\\fscy100)}}{body}")
+                  f"{{\\an5\\pos(540,{y})\\fscx90\\fscy90\\t(0,90,\\fscx100\\fscy100)}}{body}")
         srt.append(f"{n + 1}\n{ts_srt(g[0]['s'])} --> {ts_srt(e)}\n{text}\n")
     open(ass_path, "w").write(head + "\n".join(ev) + "\n")
     open(srt_path, "w").write("\n".join(srt))
-    return len(groups)
+    return len(groups), (64, SHEET_Y + 36, logo_w)
 
 
 # ---------------------------------------------------------------- rendering
@@ -252,13 +275,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 def shade_png(path):
     """Top and bottom shading so the white text reads on any background."""
     yy = np.linspace(0, 1, OUT_H)[:, None]
-    alpha = np.clip(np.maximum((0.22 - yy) / 0.22 * 0.70, (yy - 0.55) / 0.45 * 0.70), 0, 1)
+    alpha = np.clip(np.maximum((0.20 - yy) / 0.20 * 0.80, (yy - 0.58) / 0.42 * 0.78), 0, 1)
     img = np.zeros((OUT_H, OUT_W, 4), np.uint8)
+    img[..., :3] = (23, 19, 12)    # #0c1317 (BGR): slate, never pure black
     img[..., 3] = (np.repeat(alpha, OUT_W, axis=1) * 255).astype(np.uint8)
     cv2.imwrite(path, img)
 
 
-def render(clip, shots, ass_path, out_path):
+def render(clip, shots, ass_path, logo_box, out_path):
     src = os.path.join(WORK, "src", f"{clip['episode']}.mp4")
     duration = sum(p["end"] - p["start"] for p in clip["pieces"])
     shade = os.path.join(WORK, "shade.png")
@@ -286,9 +310,14 @@ def render(clip, shots, ass_path, out_path):
                  f"afade=t=in:d=0.03,afade=t=out:st={d - 0.05:.3f}:d=0.05[a{k}]")
     f.append("".join(f"[a{k}]" for k in range(len(clip["pieces"]))) +
              f"concat=n={len(clip['pieces'])}:v=0:a=1[aud]")
-    f.append(f"[pic][1:v]overlay=0:0,ass={ass_path},format=yuv420p[vout]")
+    lx, ly, lw = logo_box
+    f.append(f"[2:v]scale={lw}:{LOGO_H}:flags=lanczos,format=rgba,fade=t=in:st=0:d=0.22:alpha=1,"
+             f"fade=t=out:st={CARD - 0.28:.2f}:d=0.28:alpha=1[logo]")
+    f.append(f"[pic][1:v]overlay=0:0,ass={ass_path}:fontsdir={FONTS_DIR}[txt]")
+    f.append(f"[txt][logo]overlay={lx}:{ly}:enable='lt(t,{CARD})',format=yuv420p[vout]")
     tmp = out_path + ".tmp.mp4"
-    run(["ffmpeg", "-v", "error", "-y", "-i", src, "-loop", "1", "-i", shade, "-filter_complex", ";".join(f),
+    run(["ffmpeg", "-v", "error", "-y", "-i", src, "-loop", "1", "-i", shade,
+         "-loop", "1", "-t", f"{CARD + 0.5:.2f}", "-i", LOGO, "-filter_complex", ";".join(f),
          "-map", "[vout]", "-map", "[aud]", "-t", f"{duration:.3f}", "-c:v", "libx264", "-preset", "slow",
          "-crf", "18", "-profile:v", "high", "-r", str(FPS), "-c:a", "pcm_s16le", tmp])
 
@@ -326,8 +355,8 @@ def main():
             offset += p["end"] - p["start"]
         ass_path = os.path.join(WORK, f"{clip['id']}.ass")
         srt_path = os.path.join(ROOT, "subtitles", f"{clip['id']}.srt")
-        n = write_subs(clip, ep, words, offset, ass_path, srt_path)
-        render(clip, shots, ass_path, os.path.join(ROOT, "clips", f"{clip['id']}.mp4"))
+        n, logo_box = write_subs(clip, ep, words, offset, ass_path, srt_path)
+        render(clip, shots, ass_path, logo_box, os.path.join(ROOT, "clips", f"{clip['id']}.mp4"))
         plan[clip["id"]] = {"duration": round(offset, 3), "shots": shots, "alignment": align, "subtitle_cues": n}
         print(clip["id"], f"{offset:.1f}s", f"{len(shots)} shots", align, flush=True)
     path = os.path.join(ROOT, "verification", "render_plan.json")
