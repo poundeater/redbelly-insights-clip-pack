@@ -21,6 +21,7 @@ Supporting material:
 - [`verification/REPORT.md`](verification/REPORT.md) is the automated check of every clip against the brief: specs, duration, loudness, subtitle coverage, spelling of names and terms, speaker-in-frame coverage, a personal-credit scan, and the subtitle text compared with three independent transcripts.
 - [`verification/contact_sheets/`](verification/contact_sheets/) has one frame every 4 seconds of each clip, so framing and subtitles can be reviewed without playing the videos.
 - [`verification/transcripts/`](verification/transcripts/) has full machine transcripts of Episodes 26 to 29, used to choose the moments.
+- [`index.html`](index.html) is a static review page with all six players, sources, captions (with a copy button) and downloads. The repository root deploys as-is on Vercel, Netlify or GitHub Pages, with no build step.
 - [`clips.json`](clips.json) is the single source of truth: episodes, cut points, proof-read subtitle text, hooks, tags, names, roles and captions.
 
 ## Look of the clips
@@ -56,6 +57,7 @@ for ep in ep26 ep28; do               # word-timestamped transcripts
 done
 python3 tools/build.py                # render clips/*.mp4 and subtitles/*.srt
 python3 tools/clip_list.py            # write CLIP_LIST.md
+python3 tools/site.py                 # write index.html (review page)
 python3 tools/verify.py               # write verification/REPORT.md (exit code 1 on any failed check)
 ```
 
